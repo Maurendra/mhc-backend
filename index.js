@@ -85,7 +85,6 @@ app.put("/events", async (req, res) => {
     status: body.status,
     note: body.note,
   };
-  console.log(body.id, event);
 
   try {
     await EventModel.findByIdAndUpdate(body.id, event);
@@ -95,6 +94,17 @@ app.put("/events", async (req, res) => {
   }
 });
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log("Server running on port" + process.env.PORT);
+app.post("/events/delete", async (req, res) => {
+  let body = req.body;
+
+  try {
+    await EventModel.findByIdAndDelete(body.id);
+    res.send(200);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.listen(process.env.PORT || 3001, () => {
+  console.log("Server running on port");
 });
