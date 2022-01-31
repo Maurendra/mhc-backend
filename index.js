@@ -20,19 +20,7 @@ mongoose.connect(
 );
 
 app.get("/", async (req, res) => {
-  const user = new UserModel({
-    id: 5,
-    username: "company_3",
-    password: "company_3",
-    type: "company",
-    name: "Company 3",
-  });
-
-  try {
-    // await user.save();
-  } catch (error) {
-    console.log(error);
-  }
+  res.send("Successfully running MHC backend");
 });
 
 app.get("/users", (req, res) => {
